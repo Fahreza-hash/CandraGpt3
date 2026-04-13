@@ -1,0 +1,29 @@
+// ============================
+// AlterAi - Configuration
+// Isi nilai di bawah sesuai akun kamu
+// ============================
+
+module.exports = {
+  APP_NAME: 'AlterAi',
+  APP_URL: 'https://alterai-candra.vercel.app', // ganti dengan URL deploy kamu
+
+  // Auth — ganti dengan string random panjang
+  JWT_SECRET: 'ganti-dengan-random-string-panjang-minimal-32-karakter',
+
+  // AI - Groq (https://console.groq.com)
+  GROQ_API_KEY: process.env.GROQ_API_KEY || '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',
+  GROQ_BASE_URL: 'https://api.groq.com/openai/v1/chat/completions',
+
+  // Model — sesuaikan dengan model yang tersedia di akun Groq kamu
+  DEFAULT_MODEL: 'meta-llama/llama-4-scout-17b-16e-instruct',
+  ALLOWED_MODELS: [
+    'meta-llama/llama-4-scout-17b-16e-instruct',
+  ],
+  MODEL_DISPLAY: {
+    'meta-llama/llama-4-scout-17b-16e-instruct': "Alter's 3.0",
+  },
+  PREMIUM_MODELS: [],
+
+  // Limits
+  DAILY_CHAT_LIMIT: 20,
+};
