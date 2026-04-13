@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>AlterAi</title>
+  <link rel="stylesheet" href="/styles.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+<div class="overlay" id="ov"></div>
+<aside class="sidebar" id="sb">
+  <div class="sb-head">
+    <div class="logo">Alter<span>Ai</span></div>
+    <button class="ib" id="closeSb"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <button class="new-chat" id="newChatBtn"><i class="fa-solid fa-plus"></i> New Chat</button>
+  <div class="cl" id="sessionList"><div class="slabel">Memuat...</div></div>
+  <div class="sb-foot">
+    <div class="urow" id="settingsBtn">
+      <div class="av" id="userAv">U</div>
+      <div class="uinfo">
+        <div class="uname" id="userName">User</div>
+        <div class="uplan"><span class="badge" id="userBadge">Free</span><span id="chatCount">0/50</span></div>
+      </div>
+      <button class="ib"><i class="fa-solid fa-gear"></i></button>
+    </div>
+  </div>
+</aside>
+
+<div class="app">
+  <div class="topbar">
+    <div class="tl">
+      <button class="ib" id="openSb"><i class="fa-solid fa-bars"></i></button>
+      <button class="mbtn" id="modelBtn">
+        <i class="fa-solid fa-microchip"></i>
+        <span id="modelLabel">Llama 4 Scout</span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </button>
+    </div>
+    <div class="tr">
+      <div class="lpill"><span id="limitLabel">0/50</span><div class="ltrack"><div class="lfill" id="limitBar" style="width:0%"></div></div></div>
+      <button class="ib" id="exportBtn" title="Export Chat"><i class="fa-solid fa-arrow-up-from-bracket"></i></button>
+    </div>
+  </div>
+
+  <div id="viewHome" style="flex:1;overflow-y:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 20px;gap:8px">
+    <div style="width:56px;height:56px;background:linear-gradient(135deg,rgba(79,195,247,0.15),rgba(179,136,255,0.15));border:1px solid rgba(79,195,247,0.25);border-radius:18px;display:flex;align-items:center;justify-content:center;margin-bottom:4px;box-shadow:0 0 30px rgba(79,195,247,0.15),0 0 60px rgba(179,136,255,0.08)">
+      <i class="fa-solid fa-bolt" style="background:linear-gradient(135deg,#4fc3f7,#b388ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:22px"></i>
+    </div>
+    <div style="font-family:'Orbitron',sans-serif;font-size:21px;font-weight:700;text-align:center;line-height:1.35;letter-spacing:1px">
+      Halo, <span id="greetName" style="background:linear-gradient(135deg,#4fc3f7,#b388ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Kamu</span><br/>
+      <span id="greetTime" style="font-size:16px;font-weight:400;opacity:0.7;letter-spacing:0.5px">Mau Ngapain?</span>
+    </div>
+    <div style="font-size:12px;color:rgba(200,210,255,0.4);text-align:center;font-family:'Exo 2',sans-serif">AlterAi siap bantu coding &amp; debugging.</div>
+    <div style="display:flex;flex-direction:column;gap:7px;width:100%;max-width:340px;margin-top:14px">
+      <div class="chip" data-msg="Bikin script Roblox"><i class="fa-brands fa-unity" style="color:#4fc3f7;width:16px"></i> Bikin script Roblox</div>
+      <div class="chip" data-msg="Debug kode gw"><i class="fa-solid fa-bug" style="color:#4fc3f7;width:16px"></i> Debug kode gw</div>
+      <div class="chip" data-msg="Buat landing page HTML CSS"><i class="fa-brands fa-html5" style="color:#4fc3f7;width:16px"></i> Buat landing page</div>
+      <div class="chip" data-msg="Bikin script Python"><i class="fa-brands fa-python" style="color:#4fc3f7;width:16px"></i> Script Python</div>
+      <div class="chip" data-msg="Bikin bash script Termux"><i class="fa-solid fa-terminal" style="color:#4fc3f7;width:16px"></i> Bash Termux</div>
+      <div class="chip" data-msg="Bikin bot WhatsApp JavaScript"><i class="fa-solid fa-robot" style="color:#4fc3f7;width:16px"></i> Bot WhatsApp JS</div>
+    </div>
+  </div>
+
+  <div id="viewChat" style="display:none;flex:1;flex-direction:column;overflow:hidden;min-height:0">
+    <div class="cscroll" id="chatScroll"></div>
+  </div>
+
+  <div class="iwrap">
+    <div class="ibox">
+      <div class="itop">
+        <textarea id="ta" rows="1" placeholder="Ketik pesan..."></textarea>
+      </div>
+      <div class="ibot">
+        <div class="itools">
+          <button class="tbtn" id="imgBtn"><i class="fa-solid fa-image"></i> Gambar</button>
+          <button class="tbtn" id="modeBtn" style="display:none"><i class="fa-solid fa-bolt"></i> <span id="modeLabel">Normal</span></button>
+        </div>
+        <button class="send" id="sendBtn"><i class="fa-solid fa-arrow-up"></i></button>
+      </div>
+    </div>
+    <div class="hint">Enter kirim &nbsp;·&nbsp; Shift+Enter baris baru</div>
+  </div>
+</div>
+<input type="file" id="imgInput" accept="image/*" style="display:none"/>
+<script src="/js/api.js"></script>
+<script src="/js/home.js"></script>
+</body>
+</html>
